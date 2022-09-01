@@ -1,0 +1,35 @@
+# For CONAN
+views: 2
+hidden_dim: 288
+test_time: 5
+device: 1
+seed: 0
+experiment_id: 0
+verbose: false
+task: 'classification'
+backbone:
+  type: 'mlp'
+  arch0: [784, 1024, 1024, 1024, 288]
+  arch1: [784, 1024, 1024, 1024, 288]
+fusion:
+  activation: 'relu'
+  hidden_dim: 288
+  use_bn: true
+  mlp_layers: 2
+cluster_module:
+  type: 'ddc'
+  num_cluster: 10
+  hidden_dim: 288 # ddc input features
+  cluster_hidden_dim: 128 # ddc hidden features
+train:
+  epochs: 100
+  dataset: 'NoisyMNIST'
+  batch_size: 100
+  optim: "adam"
+  lr: 0.0001
+contrastive:
+  type: 'simclr'
+  projection_dim: 288
+  con_lambda: 0.01
+  projection_layers: 2
+  temperature: 0.1

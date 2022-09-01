@@ -1,0 +1,37 @@
+# For MORIRAN
+views: 2
+hidden_dim: 128
+test_time: 5
+seed: 0
+device: 0
+experiment_id: 0
+verbose: false
+task: 'classification'
+backbone:
+  type: 'mlp'
+  arch0: [20, 512, 512, 512, 128]
+  arch1: [59, 512, 512, 512, 128]
+fusion:
+  activation: 'relu'
+  use_bn: true
+  mlp_layers: 1
+train:
+  epochs: 300
+  dataset: 'Scene-15'
+  batch_size: 256
+  optim: "adam"
+  lr: 0.0001
+  num_workers: 4
+cluster_module:
+  num_cluster: 15
+contrastive:
+  type: 'barlow'
+  ins_lambda: 1.
+  cls_lambda: 0.5
+  con_lambda: 0.0051
+  projection_dim: 256
+  projection_layers: 1
+  temperature: 0.07
+  nmb_protos: 256
+  eps: 0.05
+  ds_iters: 3
