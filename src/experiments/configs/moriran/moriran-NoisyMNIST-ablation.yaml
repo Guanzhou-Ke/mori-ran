@@ -4,7 +4,7 @@ hidden_dim: 288
 test_time: 3
 seed: 0
 device: 1
-experiment_id: 1
+experiment_id: 0
 verbose: false
 backbone:
   type: 'mlp'

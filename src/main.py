@@ -31,6 +31,7 @@ if __name__ == '__main__':
     args = parse_args()
     config = get_cfg(args)
     device = torch.device(f"cuda:{config.device}")
+    
     print(f'Use {device}')
     if config.experiment == 'moriran':
         model_cls = MORIRAN
@@ -41,11 +42,11 @@ if __name__ == '__main__':
     
     if config.task == 'clustering':
         train_dataset = load_dataset(config.train.dataset)
-        # trainer = Trainer(model_cls, config, train_dataset, valid_dataset=train_dataset, device=device)
+        trainer = Trainer(model_cls, config, train_dataset, valid_dataset=train_dataset, device=device)
         
     else:
         train_dataset, valid_dataset, test_dataset = load_dataset(config.train.dataset, classification=True)
-        # trainer = Trainer(model_cls, config, train_dataset, valid_dataset=valid_dataset, test_dataset=test_dataset, device=device)
+        trainer = Trainer(model_cls, config, train_dataset, valid_dataset=valid_dataset, test_dataset=test_dataset, device=device)
     
-    # trainer.train()
+    trainer.train()
     

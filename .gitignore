@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# For MacOS
+.DS_Store
+
+# For this project.
+activate_env
+src/data/raw
+src/data/processed/NoisyMNIST.mat
+src/experiments/results
+todo.md

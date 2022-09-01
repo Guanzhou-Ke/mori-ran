@@ -13,8 +13,7 @@ from torch import nn
 from torch.nn import init
 
 from networks import build_mlp
-from optimizer import Optimizer
-from losses import BarlowTwinsModule, SwAVModule
+from losses import BarlowTwinsModule, CategoryContrastiveModule
 
 
 class MORIRAN(nn.Module):
@@ -35,7 +34,7 @@ class MORIRAN(nn.Module):
         if self.args.contrastive.ins_enable:
             self.instance_loss = BarlowTwinsModule(args)
         if self.args.contrastive.cls_enable:
-            self.cls_loss = SwAVModule(args, device)
+            self.cls_loss = CategoryContrastiveModule(args, device)
             
         self.classification = False  
         if self.args.task == 'classification':

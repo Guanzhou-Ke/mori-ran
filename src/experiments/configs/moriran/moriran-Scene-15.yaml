@@ -6,7 +6,7 @@ seed: 0
 device: 0
 experiment_id: 0
 verbose: false
-task: 'classification'
+task: 'clustering'
 backbone:
   type: 'mlp'
   arch0: [20, 512, 512, 512, 128]

@@ -69,7 +69,10 @@ class BarlowTwinsModule(nn.Module):
         return self.projector(x)
     
     
-class SwAVModule(nn.Module):
+class CategoryContrastiveModule(nn.Module):
+    """
+    References to: SWAV.
+    """
     
     def __init__(self, args, device) -> None:
         super().__init__()

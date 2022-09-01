@@ -4,7 +4,7 @@ hidden_dim: 128
 test_time: 5
 seed: 0
 device: 0
-experiment_id: 8
+experiment_id: 0
 verbose: false
 task: 'clustering'
 backbone:

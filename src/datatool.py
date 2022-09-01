@@ -12,7 +12,6 @@ import sys
 import pickle
 import random
 
-import cv2
 import scipy.io as sio
 from scipy import sparse
 import numpy as np
@@ -44,84 +43,6 @@ def export_dataset(name, views, labels):
         npz_dict[f"view_{i}"] = v
     np.savez(file_path, **npz_dict)
 
-
-def image_edge(img):
-    """
-    :param img:
-    :return:
-    """
-    img = np.array(img)
-    dilation = cv2.dilate(img, np.ones((3, 3), np.uint8), iterations=1)
-    edge = dilation - img
-    return np.stack((img, edge), axis=-1)
-
-
-def _mnist(dataset_class):
-    img_transforms = transforms.Compose([image_edge,
-                                         transforms.ToTensor(),
-                                         transforms.Normalize((0.5,), (0.5,))])
-    dataset = dataset_class(root=RAW_DATA_ROOT, train=True,
-                            download=True, transform=img_transforms)
-
-    loader = torch.utils.data.DataLoader(dataset, batch_size=len(dataset))
-    data, labels = list(loader)[0]
-    return data, labels
-
-
-def emnist():
-    data, labels = _mnist(torchvision.datasets.MNIST)
-    views = np.split(data, data.shape[1], axis=1)
-    export_dataset("emnist", views=views, labels=labels)
-
-
-def fmnist():
-    data, labels = _mnist(torchvision.datasets.FashionMNIST)
-    views = np.split(data, data.shape[1], axis=1)
-    export_dataset("fmnist", views=views, labels=labels)
-
-
-def coil(n_objs=20):
-    from skimage.io import imread
-    assert n_objs in [20, 100]
-    data_dir = os.path.join(RAW_DATA_ROOT, f"coil-{n_objs}")
-    img_size = (1, 128, 128) if n_objs == 20 else (3, 128, 128)
-    n_imgs = 72
-    n_views = 3
-
-    n = (n_objs * n_imgs) // n_views
-
-    views = []
-    labels = []
-
-    img_idx = np.arange(n_imgs)
-
-    for obj in range(n_objs):
-        obj_list = []
-        obj_img_idx = np.random.permutation(img_idx).reshape(n_views, n_imgs // n_views)
-        labels += (n_imgs // n_views) * [obj]
-
-        for view, indices in enumerate(obj_img_idx):
-            sub_view = []
-            for i, idx in enumerate(indices):
-                if n_objs == 20:
-                    fname = os.path.join(data_dir, f"obj{obj + 1}__{idx}.png")
-                    img = imread(fname)[None, ...]
-                else:
-                    fname = os.path.join(data_dir, f"obj{obj + 1}__{idx * 5}.png")
-                    img = imread(fname)
-                if n_objs == 100:
-                    img = np.transpose(img, (2, 0, 1))
-                sub_view.append(img)
-            obj_list.append(np.array(sub_view))
-        views.append(np.array(obj_list))
-    views = np.array(views)
-    views = np.transpose(views, (1, 0, 2, 3, 4, 5)).reshape(n_views, n, *img_size)
-    labels = np.array(labels)
-    export_dataset(f"coil-{n_objs}", views=views, labels=labels)
-
-
-def _load_npz(name):
-    return np.load(os.path.join(PROCESSED_DATA_ROOT, f"{name}.npz"))
 
 def _load_mat(name):
     return sio.loadmat(os.path.join(PROCESSED_DATA_ROOT, f"{name}.mat"))
