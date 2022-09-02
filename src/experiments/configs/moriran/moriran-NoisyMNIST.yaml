@@ -5,7 +5,7 @@ test_time: 5
 seed: 0
 device: 0
 experiment_id: 0
-verbose: false
+verbose: true
 task: 'clustering'
 backbone:
   type: 'mlp'
@@ -16,7 +16,7 @@ fusion:
   use_bn: true
   mlp_layers: 1
 train:
-  epochs: 300
+  epochs: 100
   dataset: 'NoisyMNIST'
   batch_size: 100
   optim: "adam"

@@ -5,7 +5,7 @@ test_time: 5
 seed: 0
 device: 0
 experiment_id: 0
-verbose: false
+verbose: true
 task: 'clustering'
 backbone:
   type: 'mlp'
