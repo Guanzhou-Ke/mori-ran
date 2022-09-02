@@ -6,7 +6,6 @@ Author: Guanzhou Ke.
 Email: guanzhouk@gmail.com
 Date: 2022/08/14
 """
-from mimetypes import init
 import torch
 import numpy as np
 from matplotlib import pyplot as plt
@@ -78,16 +77,16 @@ if __name__ == '__main__':
     model = 'moriran'
     eid = 0
     ablation = False
-    # ttype = 'clustering'
-    # for ds in ['Scene-15', 'LandUse-21', 'Caltech101-20', 'NoisyMNIST']:
-    #     try:
-    #         print(ds)
-    #         if ablation:
-    #             path = f'./experiments/results/ablation/{model}-{eid}/{ds}/{ttype}/history.log'
-    #         else:
-    #             path = f'./experiments/results/{model}-{eid}/{ds}/{ttype}/history.log'
-    #         calc_stats(path, ttype)
-    #     except:
-    #         continue
+    ttype = 'clustering'
+    for ds in ['Scene-15', 'LandUse-21', 'Caltech101-20', 'NoisyMNIST']:
+        try:
+            print(ds)
+            if ablation:
+                path = f'./experiments/results/ablation/{model}-{eid}/{ds}/{ttype}/history.log'
+            else:
+                path = f'./experiments/results/{model}-{eid}/{ds}/{ttype}/history.log'
+            calc_stats(path, ttype)
+        except:
+            continue
     hidden_path = './experiments/results/hidden.data'
     vis_hidden(hidden_path)

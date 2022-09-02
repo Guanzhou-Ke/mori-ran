@@ -6,7 +6,6 @@ import torch
 from torch import nn
 from torch.nn import init
 from torch.nn import Parameter
-import numpy as np
 from torch.nn import functional as F
 
 from networks import build_mlp

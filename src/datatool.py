@@ -8,8 +8,6 @@ Date: 2022/08/14
 """
 
 import os
-import sys
-import pickle
 import random
 
 import scipy.io as sio
@@ -17,8 +15,6 @@ from scipy import sparse
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-import torchvision
-import torchvision.transforms as transforms
 
 import utils
 

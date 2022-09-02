@@ -3,7 +3,6 @@ import sys
 import numpy as np
 import torch
 from scipy.optimize import linear_sum_assignment
-from sklearn.metrics import normalized_mutual_info_score, confusion_matrix
 from sklearn import metrics
 from sklearn.cluster import KMeans
 from munkres import Munkres

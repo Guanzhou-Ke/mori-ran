@@ -42,8 +42,7 @@ if __name__ == '__main__':
     
     if config.task == 'clustering':
         train_dataset = load_dataset(config.train.dataset)
-        trainer = Trainer(model_cls, config, train_dataset, valid_dataset=train_dataset, device=device)
-        
+        trainer = Trainer(model_cls, config, train_dataset, valid_dataset=train_dataset, device=device)   
     else:
         train_dataset, valid_dataset, test_dataset = load_dataset(config.train.dataset, classification=True)
         trainer = Trainer(model_cls, config, train_dataset, valid_dataset=valid_dataset, test_dataset=test_dataset, device=device)
