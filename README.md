@@ -3,7 +3,7 @@ The official repos. for "MORI-RAN: Multi-view Robust Representation Learning via
 
 - Submitted at: ICDM 2022 Workshop on Multi-view Representation Learning
 
-- Status: Under Review.
+- Status: Accepted
 
 - [ArXiv](https://arxiv.org/abs/2208.12545)
 
