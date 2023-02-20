@@ -66,12 +66,18 @@ Modify the `apex/amp/utils.py#cached_cast` as following:
 ## Citation
 
 ```
-@misc{ke2022moriran,
-    title={MORI-RAN: Multi-view Robust Representation Learning via Hybrid Contrastive Fusion},
-    author={Guanzhou Ke and Yongqi Zhu and Yang Yu},
-    year={2022},
-    eprint={2208.12545},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+@INPROCEEDINGS {10031085,
+author = {G. Ke and Y. Zhu and Y. Yu},
+booktitle = {2022 IEEE International Conference on Data Mining Workshops (ICDMW)},
+title = {MORI-RAN: Multi-view Robust Representation Learning via Hybrid Contrastive Fusion},
+year = {2022},
+volume = {},
+issn = {},
+pages = {467-474},
+doi = {10.1109/ICDMW58026.2022.00068},
+url = {https://doi.ieeecomputersociety.org/10.1109/ICDMW58026.2022.00068},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+month = {dec}
 }
 ```
